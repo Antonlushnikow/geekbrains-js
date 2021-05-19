@@ -1,11 +1,46 @@
 /*
-Самостоятельно разобраться с атрибутами тега script (async и defer).
-
-С атрибутом defer скрипт загружается в фоновом режиме и не блокирует загрузку страницы. Скрипт выполняется только после построения DOM-дерева.
-Два скрипта с defer будут выполнены в том порядке, в котором они размещены в коде.
-defer может быть полезен для скриптов, которые взаимодействуют с DOM.
-
-С атрибутом async скрипты и HTML загружаются независимо и выполняются (отображаются) по мере загрузки.
-Два скрипта с async будут выполнены в порядке загрузки.
-async может применяться для независимых скриптов.
+Присвоить переменной а значение в промежутке [0..15]. 
+С помощью оператора switch организовать вывод чисел от a до 15.
 */
+
+'use strict';
+
+let a = 7;
+
+switch (a) {
+    case 0:
+        console.log(0);
+    case 1:
+        console.log(1);
+    case 2:
+        console.log(2);
+    case 3:
+        console.log(3);
+    case 4:
+        console.log(4);
+    case 5:
+        console.log(5);
+    case 6:
+        console.log(6);
+    case 7:
+        console.log(7);
+    case 8:
+        console.log(8);
+    case 9:
+        console.log(9);
+    case 10:
+        console.log(10);
+    case 11:
+        console.log(11);
+    case 12:
+        console.log(12);
+    case 13:
+        console.log(13);
+    case 14:
+        console.log(14);
+    case 15:
+        console.log(15);
+        break;
+    default:
+        console.log('Out of range');
+}
