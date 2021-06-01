@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            width: 640px;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .cell {
+            height: 78px;
+            width: 78px;
+            border: 1px solid black;
+        }
+
+        .cell-black {
+            background-color: #000;
+        }
+
+        .cell-white {
+            background-color: #fff;
+        }
+
+        .num {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border: none;
+        }
+
+        .letter {
+            display: flex;
+            justify-content: center;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+
+    </div>
+    <script>
+        let board = document.querySelector('#main');
+
+        for (let i = 8; i >= 1; i--) {
+            // создание строки div.row
+            let row = document.createElement('div');
+            row.classList.add('row');
+            // создание номера строки
+            let num = document.createElement('div');
+            num.classList.add('cell', 'num');
+            num.insertAdjacentHTML('afterbegin', i);
+            row.appendChild(num);
+
+            // добавление ячеек строки
+            for (let j = 1; j <= 8; j++) {
+                let cell = document.createElement('div');
+                cell.classList.add('cell');
+                if ((i + j) % 2) {
+                    cell.classList.add('cell-white');
+                } else {
+                    cell.classList.add('cell-black');
+                }
+                row.appendChild(cell);
+            }
+            // добавление готовой строки на доску
+            board.appendChild(row);
+        }
+        
+        // создание последнего ряда с буквами
+        let row = document.createElement('div');
+        row.classList.add('row');
+        let cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.classList.add('letter');
+        row.appendChild(cell);
+        let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+        for (letter of letters) {
+            let cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.classList.add('letter');
+            cell.insertAdjacentHTML('afterbegin', letter);
+            row.appendChild(cell);
+        }
+        board.appendChild(row);
+    </script>
+</body>
+
+</html>
