@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+            display: block;
+            height: 80px;
+            position: relative;
+
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        .cart {
+            position: absolute;
+            left: 60%;
+
+        }
+
+        .products {
+            padding-left: 30px;
+        }
+
+        button {
+            display: block;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="cart"></div>
+    </header>
+    <div class="wrapper">
+        <div class="products">
+            <p>iPhone 6S</p>
+            <p>Цена: 120000 руб.</p>
+            <button id="product1">Купить</button>
+        </div>
+        <div class="products">
+            <p>Xiaomi Mi 9</p>
+            <p>Цена: 20000 руб.</p>
+            <button id="product2">Купить</button>
+        </div>
+        <div class="products">
+            <p>Samsung Galaxy S7</p>
+            <p>Цена: 100000 руб.</p>
+            <button id="product3">Купить</button>
+        </div>
+    </div>
+    <script>
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+        }
+
+
+        let product1 = new Product('iPhone 6S', 120000);
+        let product2 = new Product('Xiaomi Mi 9', 20000);
+        let product3 = new Product('Samsung Galaxy S7', 100000);
+
+
+        let basket = {
+            products: [],
+
+            getCountProducts: function () {
+                return this.products.length;
+            },
+
+            getFullPrice: function () {
+                let sum = this.products.reduce(function (acc, elem) {
+                    return acc + elem.price;
+                }, 0);
+                return sum;
+            }
+        }
+
+        let products = {
+            'product1': product1,
+            'product2': product2,
+            'product3': product3
+        }
+
+        const item1 = document.querySelector('#product1');
+        const item2 = document.querySelector('#product2');
+        const item3 = document.querySelector('#product3');
+
+        let cart = document.querySelector('.cart');
+        cart.innerHTML = 'Корзина пуста';
+
+        function clickHandler(e) {
+            basket.products.push(products[e.target.id]);
+            let cartText = 'В корзине: ' + basket.getCountProducts() +
+                ' товаров на сумму ' +
+                basket.getFullPrice() + ' рублей';
+            cart.innerHTML = cartText;
+        }
+
+        item1.addEventListener('click', clickHandler);
+        item2.addEventListener('click', clickHandler);
+        item3.addEventListener('click', clickHandler);
+    </script>
+</body>
+
+</html>
