@@ -7,91 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #main {
-            width: 640px;
+        header {
+            display: block;
+            height: 80px;
+            position: relative;
+
         }
 
-        .row {
-            display: flex;
+        .wrapper {
+            margin: 0 auto;
+            width: 1000px;
         }
 
-        .cell {
-            height: 78px;
-            width: 78px;
-            border: 1px solid black;
+        .cart {
+            position: absolute;
+            left: 60%;
+
         }
 
-        .cell-black {
-            background-color: #000;
+        .products {
+            padding-left: 30px;
         }
 
-        .cell-white {
-            background-color: #fff;
-        }
-
-        .num {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            border: none;
-        }
-
-        .letter {
-            display: flex;
-            justify-content: center;
-            border: none;
+        button {
+            display: block;
+            margin-bottom: 30px;
         }
     </style>
 </head>
 
 <body>
-    <div id="main">
-
+    <header>
+        <div class="cart"></div>
+    </header>
+    <div class="wrapper">
+        <div class="products">
+            <p>iPhone 6S</p>
+            <p>Цена: 120000 руб.</p>
+            <button id="product1">Купить</button>
+        </div>
+        <div class="products">
+            <p>Xiaomi Mi 9</p>
+            <p>Цена: 20000 руб.</p>
+            <button id="product2">Купить</button>
+        </div>
+        <div class="products">
+            <p>Samsung Galaxy S7</p>
+            <p>Цена: 100000 руб.</p>
+            <button id="product3">Купить</button>
+        </div>
     </div>
     <script>
-        let board = document.querySelector('#main');
-
-        for (let i = 8; i >= 1; i--) {
-            // создание строки div.row
-            let row = document.createElement('div');
-            row.classList.add('row');
-            // создание номера строки
-            let num = document.createElement('div');
-            num.classList.add('cell', 'num');
-            num.insertAdjacentHTML('afterbegin', i);
-            row.appendChild(num);
-
-            // добавление ячеек строки
-            for (let j = 1; j <= 8; j++) {
-                let cell = document.createElement('div');
-                cell.classList.add('cell');
-                if ((i + j) % 2) {
-                    cell.classList.add('cell-white');
-                } else {
-                    cell.classList.add('cell-black');
-                }
-                row.appendChild(cell);
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
             }
-            // добавление готовой строки на доску
-            board.appendChild(row);
         }
-        
-        // создание последнего ряда с буквами
-        let row = document.createElement('div');
-        row.classList.add('row');
-        let cell = document.createElement('div');
-        cell.classList.add('cell');
-        cell.classList.add('letter');
-        row.appendChild(cell);
-        let letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-        for (letter of letters) {
-            let cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.classList.add('letter');
-            cell.insertAdjacentHTML('afterbegin', letter);
-            row.appendChild(cell);
+
+
+        let product1 = new Product('iPhone 6S', 120000);
+        let product2 = new Product('Xiaomi Mi 9', 20000);
+        let product3 = new Product('Samsung Galaxy S7', 100000);
+
+
+        let basket = {
+            products: [],
+
+            getCountProducts: function () {
+                return this.products.length;
+            },
+
+            getFullPrice: function () {
+                let sum = this.products.reduce(function (acc, elem) {
+                    return acc + elem.price;
+                }, 0);
+                return sum;
+            }
         }
-        board.appendChild(row);
+
+        let products = {
+            'product1': product1,
+            'product2': product2,
+            'product3': product3
+        }
+
+        const item1 = document.querySelector('#product1');
+        const item2 = document.querySelector('#product2');
+        const item3 = document.querySelector('#product3');
+
+        let cart = document.querySelector('.cart');
+        cart.innerHTML = 'Корзина пуста';
+
+        function clickHandler(e) {
+            basket.products.push(products[e.target.id]);
+            let cartText = 'В корзине: ' + basket.getCountProducts() +
+                ' товаров на сумму ' +
+                basket.getFullPrice() + ' рублей';
+            cart.innerHTML = cartText;
+        }
+
+        item1.addEventListener('click', clickHandler);
+        item2.addEventListener('click', clickHandler);
+        item3.addEventListener('click', clickHandler);
     </script>
 </body>
 
