@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+            display: block;
+            height: 80px;
+            position: relative;
+
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            width: 1000px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .cart {
+            position: absolute;
+            left: 50%;
+            width: 500px;
+            border: 1px solid black;
+            padding-left: 25px;
+            padding-right: 25px;
+            background-color: #fff;
+        }
+
+        .cart-title {
+            font-weight: 600;
+        }
+
+        .cart-container {
+            display: none;
+        }
+
+        .cart-address {
+            display: none;
+        }
+
+        .cart-comment {
+            display: none;
+        }
+
+        .products {
+            padding-left: 30px;
+        }
+
+        button {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="cart">
+            <div class="cart-title"></div>
+            <div class="cart-container">
+                <div data-id="0" class="cart-body cart-items"></div>
+                <div data-id="1" class="cart-body cart-address">
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <p>Введите адрес</p>
+                </div>
+                <div data-id="2" class="cart-body cart-comment">
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <p>Введите комментарий</p>
+                </div>
+                <div class="nav">
+                    <button id="prev" disabled>Назад</button>
+                    <button id="next">Далее</button>
+                </div>
+            </div>
+
+
+        </div>
+    </header>
+    <div class="wrapper">
+    </div>
+    <script src="main.js">
+    </script>
+</body>
+
+</html>
